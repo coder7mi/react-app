@@ -1,0 +1,28 @@
+{
+  "status": 0,
+  "data": {
+    "films": [
+      {
+        "id": 1,
+        "title": "Star Wars: Episode IV - A New Hope",
+        "description": "Luke Skywalker joins forces with a Jedi Knight, a cocky pilot, a Wookiee and two droids to save the galaxy from the Empire's world-destroying battle-station, while also attempting to rescue Princess Leia from the evil Darth Vader.",
+        "director": "George Lucas",
+        "producer": "Gary Kurtz, Rick McCallum"
+      },
+      {
+        "id": 2,
+        "title": "Star Wars: Episode V - The Empire Strikes Back",
+        "description": "After the rebels are overpowered by the Empire on their newly established base, Luke Skywalker begins Jedi training with Yoda, while his friends are pursued by Darth Vader.",
+        "director": "Irvin Kershner",
+        "producer": "Gary Kurtz, Rick McCallum"
+      },
+      {
+        "id": 3,
+        "title": "Star Wars: Episode VI - Return of the Jedi",
+        "description": "Luke Skywalker returns to his home planet of Tatooine in an attempt to rescue his friend Han Solo from the clutches of Jabba the Hutt, while also attempting to rescue Princess Leia from the evil Darth Vader.",
+        "director": "Richard Marquand",
+        "producer": "Howard G. Kazanjian, George Lucas"
+      }
+    ]
+  }
+}

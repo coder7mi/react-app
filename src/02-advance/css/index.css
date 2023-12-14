@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  box-sizing: border-box;
+}
+
+ul {
+  width: 100%;
+  height: 50px;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  line-height: 50px;
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+ul li {
+  flex: 1;
+  text-align: center;
+}
+
+ul li.active {
+  color: orange;
+}
+
+.list-wrap {
+  margin-bottom: 10px;
+  border-bottom: 1px solid gray;
+}
+
+.list-title {
+  font-size: 20px;
+}
+
+.list-address {
+  color: #ccc;
+  font-size: 15px;
+}
+
+input {
+  width: 100%;
+  height: 50px;
+  font-size: 20px;
+}
