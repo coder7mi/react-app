@@ -5,17 +5,35 @@ import CinemaListReducer from './reducers/CinemaListReducer'
 import reduxThunk from 'redux-thunk'
 import reduxPromise from 'redux-promise'
 
+/* -------------------------------- redux持久化 -------------------------------- */
+import { persistStore, persistReducer } from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+
+const persistConfig = {
+  key: 'currentCity',
+  storage,
+  whitelist: ['CityReducer']
+}
+
 const reducer = combineReducers({
   TabbarReducer,
   CityReducer,
   CinemaListReducer
 })
 
+const persistedReducer = persistReducer(persistConfig, reducer)
+
+// react开发者工具
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
-const store = createStore(reducer, composeEnhancers(applyMiddleware(reduxThunk, reduxPromise)))
+const store = createStore(
+  persistedReducer,
+  composeEnhancers(applyMiddleware(reduxThunk, reduxPromise))
+)
 
-export default store
+let persistor = persistStore(store)
+
+export { store, persistor }
 
 /* ------------------ 原理 ------------------ */
 function createAStore(reducer) {

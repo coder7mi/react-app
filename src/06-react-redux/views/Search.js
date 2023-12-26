@@ -1,10 +1,11 @@
-import React, { useEffect, useState } from 'react'
-import store from '../redux/store'
+import React, { useEffect, useMemo, useState } from 'react'
+import { store } from '../redux/store'
 import getList from '../redux/actionCreator/CinemaList'
 
-export default function Cinemas(props) {
-  const [city, setCity] = useState(store.getState().CityReducer.city)
+export default function Search() {
   const [list, setList] = useState(store.getState().CinemaListReducer.list)
+
+  const [myText, setMyText] = useState('')
 
   useEffect(() => {
     if (store.getState().CinemaListReducer.list.length === 0) {
@@ -21,28 +22,16 @@ export default function Cinemas(props) {
       unsubscribe()
     }
   }, [])
+
+  const filterList = useMemo(
+    () => list.filter((item) => item.name.toUpperCase().includes(myText.toUpperCase())),
+    [list, myText]
+  )
   return (
     <div>
-      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <p
-          onClick={() => {
-            props.history.push('/city')
-          }}
-        >
-          {city}
-        </p>
-
-        <p
-          onClick={() => {
-            props.history.push('/cinemas/search')
-          }}
-        >
-          搜索
-        </p>
-      </div>
-
+      <input type="text" value={myText} onChange={(e) => setMyText(e.target.value)} />
       <ul>
-        {list.map((item, index) => {
+        {filterList.map((item, index) => {
           return <li key={index}>{item.name}</li>
         })}
       </ul>

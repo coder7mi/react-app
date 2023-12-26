@@ -1,26 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import store from '../redux/store'
 import getList from '../redux/actionCreator/CinemaList'
+import { connect } from 'react-redux'
 
-export default function Cinemas(props) {
-  const [city, setCity] = useState(store.getState().CityReducer.city)
-  const [list, setList] = useState(store.getState().CinemaListReducer.list)
+function Cinemas(props) {
+  const { city, list, getList } = props
 
   useEffect(() => {
-    if (store.getState().CinemaListReducer.list.length === 0) {
-      store.dispatch(getList())
-    } else {
-      console.log('缓存')
+    if (list.length === 0) {
+      getList()
     }
-    const unsubscribe = store.subscribe(() => {
-      setList(store.getState().CinemaListReducer.list)
-    })
-
-    return () => {
-      // 取消订阅
-      unsubscribe()
-    }
-  }, [])
+  }, [list, getList])
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
@@ -49,3 +38,15 @@ export default function Cinemas(props) {
     </div>
   )
 }
+
+const mapStateToProps = (state) => {
+  return {
+    city: state.CityReducer.city,
+    list: state.CinemaListReducer.list
+  }
+}
+
+const mapDispatchToProps = {
+  getList
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Cinemas)

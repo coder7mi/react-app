@@ -9,8 +9,6 @@ import Center from '../views/Center'
 import NotFound from '../views/NotFound'
 import Detail from '../views/Detail'
 import Login from '../views/Login'
-import City from '../views/City'
-import Search from '../views/Search'
 
 function isAuth() {
   return localStorage.getItem('token')
@@ -25,8 +23,7 @@ export default class IndexRouter extends Component {
           {this.props.children}
           <Switch>
             <Route path="/films" component={Films} />
-            <Route path="/cinemas" component={Cinemas} exact />
-            <Route path="/cinemas/search" component={Search} />
+            <Route path="/cinemas" component={Cinemas} />
 
             <Route
               path="/center"
@@ -40,7 +37,6 @@ export default class IndexRouter extends Component {
 
             <Route path="/detail" component={Detail} />
             <Route path="/login" component={Login} />
-            <Route path="/city" component={City} />
 
             {/* 重定向 
                 模糊匹配
